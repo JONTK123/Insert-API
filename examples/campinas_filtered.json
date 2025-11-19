@@ -1,0 +1,286 @@
+{
+  "database_type": "postgresql",
+  "connection_uri": "postgresql://user:password@localhost:5432/mydata",
+  "entities": [
+    {
+      "name": "restaurantes_campinas",
+      "records": 50,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome",
+          "logical_type": "company",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "categoria",
+          "logical_type": "business_category",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": ["Restaurante", "Pizzaria", "Lanchonete"]
+            }
+          }
+        },
+        {
+          "name": "cidade",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": ["Campinas"]
+            }
+          }
+        },
+        {
+          "name": "estado",
+          "logical_type": "uf",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": ["SP"]
+            }
+          }
+        },
+        {
+          "name": "bairro",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": [
+                "Cambuí",
+                "Centro",
+                "Taquaral",
+                "Barão Geraldo",
+                "Jardim Guanabara",
+                "Parque Prado",
+                "Vila Brandina",
+                "Bosque"
+              ]
+            }
+          }
+        },
+        {
+          "name": "endereco",
+          "logical_type": "street_address",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "telefone",
+          "logical_type": "phone",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "horario_funcionamento",
+          "logical_type": "opening_hours",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "preco_medio",
+          "logical_type": "float",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "min": 20.0,
+              "max": 150.0
+            }
+          }
+        },
+        {
+          "name": "avaliacao",
+          "logical_type": "rating_1_5",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "alunos_unicamp",
+      "records": 30,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome",
+          "logical_type": "name",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "email",
+          "logical_type": "email",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "universidade",
+          "logical_type": "university_name",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": ["Universidade Estadual de Campinas (UNICAMP)"]
+            }
+          }
+        },
+        {
+          "name": "curso",
+          "logical_type": "course_name",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": [
+                "Ciência da Computação",
+                "Engenharia da Computação",
+                "Sistemas de Informação",
+                "Engenharia de Software"
+              ]
+            }
+          }
+        },
+        {
+          "name": "cidade_origem",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": [
+                "Campinas",
+                "São Paulo",
+                "Santos",
+                "Sorocaba",
+                "Ribeirão Preto",
+                "Jundiaí",
+                "Piracicaba"
+              ]
+            }
+          }
+        },
+        {
+          "name": "idade",
+          "logical_type": "age",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "min": 17,
+              "max": 30
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "eventos_campinas",
+      "records": 20,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome_evento",
+          "logical_type": "short_text",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "tipo_evento",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": [
+                "Show Musical",
+                "Teatro",
+                "Festa",
+                "Feira Gastronômica",
+                "Evento Esportivo",
+                "Workshop",
+                "Palestra"
+              ]
+            }
+          }
+        },
+        {
+          "name": "local",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": [
+                "Parque Portugal",
+                "Lagoa do Taquaral",
+                "Centro de Convivência",
+                "Teatro Castro Mendes",
+                "Estádio Moisés Lucarelli",
+                "Shopping Iguatemi",
+                "Shopping Parque Dom Pedro"
+              ]
+            }
+          }
+        },
+        {
+          "name": "cidade",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "allowed_values": ["Campinas"]
+            }
+          }
+        },
+        {
+          "name": "data_evento",
+          "logical_type": "date_future",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "preco_ingresso",
+          "logical_type": "float",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "min": 0.0,
+              "max": 200.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

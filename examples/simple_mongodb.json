@@ -1,0 +1,138 @@
+{
+  "database_type": "mongodb",
+  "connection_uri": "mongodb://localhost:27017/mydata",
+  "entities": [
+    {
+      "name": "users",
+      "records": 100,
+      "fields": [
+        {
+          "name": "_id",
+          "logical_type": "uuid",
+          "constraints": {
+            "primary_key": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "name",
+          "logical_type": "name",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "email",
+          "logical_type": "email",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "cpf",
+          "logical_type": "cpf",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "phone",
+          "logical_type": "phone",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "age",
+          "logical_type": "age",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "min": 18,
+              "max": 80
+            }
+          }
+        },
+        {
+          "name": "city",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "state",
+          "logical_type": "uf",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "created_at",
+          "logical_type": "date_past",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "records": 500,
+      "fields": [
+        {
+          "name": "_id",
+          "logical_type": "uuid",
+          "constraints": {
+            "primary_key": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "name",
+          "logical_type": "short_text",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "description",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "price",
+          "logical_type": "price",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "category",
+          "logical_type": "business_category",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "in_stock",
+          "logical_type": "boolean",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "created_at",
+          "logical_type": "date_past",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    }
+  ]
+}

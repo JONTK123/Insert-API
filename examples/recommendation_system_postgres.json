@@ -1,0 +1,427 @@
+{
+  "database_type": "postgresql",
+  "connection_uri": "postgresql://user:password@localhost:5432/mydata",
+  "entities": [
+    {
+      "name": "universidades",
+      "records": 10,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome",
+          "logical_type": "university_name",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "cidade",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "estado",
+          "logical_type": "uf",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "usuarios",
+      "records": 200,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome",
+          "logical_type": "name",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "email",
+          "logical_type": "email",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "senha_hash",
+          "logical_type": "password_hash",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "curso",
+          "logical_type": "course_name",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "idade",
+          "logical_type": "age",
+          "constraints": {
+            "nullable": false,
+            "extra": {
+              "min": 17,
+              "max": 60
+            }
+          }
+        },
+        {
+          "name": "descricao",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "id_universidade",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "universidades",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "data_cadastro",
+          "logical_type": "date_past",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "categorias_estabelecimento",
+      "records": 12,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome_categoria",
+          "logical_type": "business_category",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "estabelecimentos",
+      "records": 300,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome",
+          "logical_type": "company",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "descricao",
+          "logical_type": "text",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "endereco",
+          "logical_type": "address",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "cidade",
+          "logical_type": "city",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "horario_funcionamento",
+          "logical_type": "opening_hours",
+          "constraints": {
+            "nullable": true
+          }
+        },
+        {
+          "name": "dono_nome",
+          "logical_type": "name",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "dono_email",
+          "logical_type": "email",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "id_categoria",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "categorias_estabelecimento",
+              "field": "id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "preferencias",
+      "records": 40,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "tipo_preferencia",
+          "logical_type": "preference_type",
+          "constraints": {
+            "nullable": false
+          }
+        },
+        {
+          "name": "nome_preferencia",
+          "logical_type": "preference_name",
+          "constraints": {
+            "unique": true,
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "usuario_preferencia",
+      "records": 800,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "id_usuario",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "usuarios",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "id_preferencia",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "preferencias",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "peso",
+          "logical_type": "weight_1_5",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "estabelecimento_preferencia",
+      "records": 900,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "id_estabelecimento",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "estabelecimentos",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "id_preferencia",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "preferencias",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "peso",
+          "logical_type": "weight_1_5",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "recomendacao_estabelecimento",
+      "records": 2000,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "id_usuario",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "usuarios",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "id_estabelecimento",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "estabelecimentos",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "score",
+          "logical_type": "rating_1_5",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "recomendacao_usuario",
+      "records": 1000,
+      "fields": [
+        {
+          "name": "id",
+          "logical_type": "integer",
+          "constraints": {
+            "primary_key": true,
+            "auto_increment": true,
+            "nullable": false
+          }
+        },
+        {
+          "name": "id_usuario_origem",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "usuarios",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "id_usuario_destino",
+          "logical_type": "integer",
+          "constraints": {
+            "nullable": false,
+            "foreign_key": {
+              "entity": "usuarios",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "score",
+          "logical_type": "similarity_score",
+          "constraints": {
+            "nullable": false
+          }
+        }
+      ]
+    }
+  ]
+}
