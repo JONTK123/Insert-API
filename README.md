@@ -152,6 +152,66 @@ mydata-gen validate --schema examples/recommendation_system_postgres.json
 ### Others
 - `uuid`, `boolean`, `color_name`, `hex_color`
 
+## Filtering / Restricting Generated Data
+
+You can **filter** data generation to specific values using `allowed_values` in the `extra` field of constraints. This is perfect for scenarios like:
+- Generate restaurants **only in Campinas**
+- Generate students **only from specific universities**
+- Generate events **only of certain types**
+
+### Example: Restaurants only in Campinas
+
+```json
+{
+  "name": "cidade",
+  "logical_type": "city",
+  "constraints": {
+    "nullable": false,
+    "extra": {
+      "allowed_values": ["Campinas"]
+    }
+  }
+}
+```
+
+### Example: Multiple allowed categories
+
+```json
+{
+  "name": "categoria",
+  "logical_type": "business_category",
+  "constraints": {
+    "nullable": false,
+    "extra": {
+      "allowed_values": ["Restaurante", "Pizzaria", "Lanchonete"]
+    }
+  }
+}
+```
+
+### Python Example with Filters
+
+```python
+FieldSpec(
+    name="city",
+    logical_type="city",
+    constraints=ConstraintSpec(
+        nullable=False,
+        extra={
+            "allowed_values": ["Campinas", "São Paulo", "Santos"]
+        }
+    )
+)
+```
+
+**How it works:**
+- If `allowed_values` is specified, the generator will only use values from that list
+- Works with any data type (strings, numbers, etc.)
+- Can be combined with other constraints (unique, nullable, etc.)
+- Leave `allowed_values` empty or omit it for completely random generation
+
+See `examples/campinas_filtered.json` and `examples/example_filters.py` for complete examples.
+
 ## Schema Format
 
 Create a JSON file with your schema:

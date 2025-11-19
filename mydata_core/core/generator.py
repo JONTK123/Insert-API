@@ -117,6 +117,12 @@ class DataGenerator:
     def _generate_by_type(self, logical_type: str, extra: Dict[str, Any]) -> Any:
         """Generate value based on logical type using Faker or custom logic."""
         
+        # Check if there's a filter (allowed_values) to restrict generation
+        allowed_values = extra.get("allowed_values")
+        if allowed_values and isinstance(allowed_values, list) and len(allowed_values) > 0:
+            # If allowed_values is specified, return a random value from that list
+            return random.choice(allowed_values)
+        
         # Brazilian specific types
         if logical_type == "cpf":
             return self.fake.cpf()
